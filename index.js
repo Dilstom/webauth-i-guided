@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 
-const db = require('./database/dbConfig.js');
+// const db = require('./database/dbConfig.js');
 const Users = require('./users/users-model.js');
 
 const server = express();
@@ -71,6 +71,8 @@ server.get('/api/users', restricted, only('frodo'), (req, res) => {
 
 function restricted(req, res, next) {
  const { username, password } = req.headers;
+ //  console.log('{username, password}', { username, password });
+ //  console.log('username, password', username, password);
  if (username && password) {
   Users.findBy({ username })
    .first()
